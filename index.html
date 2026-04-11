@@ -103,10 +103,6 @@
       color: #fff;
       padding: 5rem 0;
     }
-    body.light .recherche-section {
-      background: linear-gradient(135deg, #f0f0ff 0%, #e8e8f8 100%);
-      color: #1a1a1a;
-    }
     .recherche-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -119,10 +115,6 @@
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
-    }
-    body.light .recherche-card {
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(0,0,0,0.1);
     }
     .recherche-icon {
       font-size: 2rem;
@@ -158,41 +150,6 @@
       .hero-photo img { width: 180px; height: 220px; }
       .hero-inner { gap: 2rem; justify-content: center; text-align: center; }
     }
-
-    /* ── Light mode overrides ── */
-    body.light { background: #fafafa; color: #1a1a1a; }
-    body.light .nav { background: rgba(250,250,250,0.95); border-bottom: 1px solid #ddd; }
-    body.light .nav-logo, body.light .nav-links a { color: #1a1a1a; }
-    body.light .hero { background: #f5f5f5; }
-    body.light .hero-title { color: #1a1a1a; }
-    body.light .hero-subtitle { color: #444; }
-    body.light .hero-tag { background: rgba(0,0,0,0.08); color: #333; border-color: #ccc; }
-    body.light .section { background: #ffffff; }
-    body.light .section-alt { background: #f0f0f0; }
-    body.light .section-label { color: #6366f1; }
-    body.light .section-title { color: #1a1a1a; }
-    body.light .stat-card { background: #ebebeb; border-color: #ddd; }
-    body.light .stat-number { color: #1a1a1a; }
-    body.light .stat-label { color: #555; }
-    body.light .skill-category { background: #f5f5f5; border-color: #ddd; }
-    body.light .skill-category h3 { color: #6366f1; }
-    body.light .skill-name { color: #333; }
-    body.light .skill-bar { background: #ddd; }
-    body.light .project-card { background: #f5f5f5; border-color: #ddd; }
-    body.light .project-card h3 { color: #1a1a1a; }
-    body.light .project-card p { color: #555; }
-    body.light .tag { background: rgba(99,102,241,0.15); color: #4f46e5; }
-    body.light .contact-form input,
-    body.light .contact-form textarea { background: #f0f0f0; border-color: #ccc; color: #1a1a1a; }
-    body.light .contact-form label { color: #333; }
-    body.light .contact-intro { color: #444; }
-    body.light .social-links a { color: #4f46e5; }
-    body.light .footer { background: #e8e8e8; color: #555; }
-    body.light .btn-secondary { border-color: #999; color: #333; }
-    body.light .btn-outline { border-color: #4f46e5; color: #4f46e5; }
-    body.light .theme-toggle { color: #1a1a1a; border-color: #1a1a1a; }
-    body.light .deco-circle { opacity: 0.06; }
-    body.light p { color: #444; }
   </style>
 </head>
 <body>
@@ -500,7 +457,7 @@
   </section>
 
   <footer class="footer">
-    <p>Fait par Ayoub NADER — <span id="year"></span></p>
+    <p>Fait avec ❤️ par Ayoub NADER — <span id="year"></span></p>
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
@@ -520,9 +477,39 @@
     let isDark = true;
     toggle.addEventListener('click', () => {
       isDark = !isDark;
-      document.body.classList.toggle('light', !isDark);
-      icon.textContent = isDark ? '☀️' : '🌙';
-      label.textContent = isDark ? 'Clair' : 'Sombre';
+      if (!isDark) {
+        document.documentElement.style.setProperty('--color-bg', '#f5f5f5');
+        document.documentElement.style.setProperty('--color-bg-alt', '#ebebeb');
+        document.documentElement.style.setProperty('--color-surface', '#ffffff');
+        document.documentElement.style.setProperty('--color-border', '#d0d0d0');
+        document.documentElement.style.setProperty('--color-text', '#111111');
+        document.documentElement.style.setProperty('--color-text-muted', '#555555');
+        document.documentElement.style.setProperty('--color-accent', '#5b8a00');
+        document.documentElement.style.setProperty('--color-accent-dim', '#4a7000');
+        document.body.style.backgroundColor = '#f5f5f5';
+        document.body.style.color = '#111111';
+        document.querySelector('.nav').style.backgroundColor = 'rgba(245,245,245,0.92)';
+        document.querySelector('.recherche-section').style.background = 'linear-gradient(135deg, #e8e8f8 0%, #f0f0ff 100%)';
+        document.querySelector('.recherche-section').style.color = '#111111';
+        icon.textContent = '🌙';
+        label.textContent = 'Sombre';
+      } else {
+        document.documentElement.style.setProperty('--color-bg', '#0d0d0d');
+        document.documentElement.style.setProperty('--color-bg-alt', '#141414');
+        document.documentElement.style.setProperty('--color-surface', '#1a1a1a');
+        document.documentElement.style.setProperty('--color-border', '#2a2a2a');
+        document.documentElement.style.setProperty('--color-text', '#f0ede6');
+        document.documentElement.style.setProperty('--color-text-muted', '#888');
+        document.documentElement.style.setProperty('--color-accent', '#c8f04a');
+        document.documentElement.style.setProperty('--color-accent-dim', '#a8cc30');
+        document.body.style.backgroundColor = '#0d0d0d';
+        document.body.style.color = '#f0ede6';
+        document.querySelector('.nav').style.backgroundColor = 'rgba(13,13,13,0.85)';
+        document.querySelector('.recherche-section').style.background = 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%)';
+        document.querySelector('.recherche-section').style.color = '#fff';
+        icon.textContent = '☀️';
+        label.textContent = 'Clair';
+      }
     });
 
     // ── Scroll reveal ──
