@@ -498,15 +498,15 @@
 
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          observer.unobserve(e.target);
+          revealObserver.unobserve(e.target);
         }
       });
     }, { threshold: 0.15 });
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(el => revealObserver.observe(el));
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
