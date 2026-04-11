@@ -1,4 +1,4 @@
-                              vconst navbar = document.getElementById('navbar');
+const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -50,9 +50,9 @@ const observer = new IntersectionObserver(function(entries) {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.05 });
 
-document.querySelectorAll('.section, .project-card, .stat-card, .skill-category, .timeline-item').forEach(function(el) {
+document.querySelectorAll('.project-card, .stat-card, .skill-category, .timeline-item, .timeline-content').forEach(function(el) {
   el.classList.add('fade-hidden');
   observer.observe(el);
 });
