@@ -1,4 +1,4 @@
-const navbar = document.getElementById('navbar');
+                              vconst navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -44,11 +44,19 @@ contactForm.addEventListener('submit', function(event) {
 });
 
 const observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
 }, { threshold: 0.1 });
-document.querySelectorAll('.section, .project-card, .stat-card, .skill-category').forEach(function(el) {
-  el.classList.add('fade-hidden'); observer.observe(el);
+
+document.querySelectorAll('.section, .project-card, .stat-card, .skill-category, .timeline-item').forEach(function(el) {
+  el.classList.add('fade-hidden');
+  observer.observe(el);
 });
+
 const s = document.createElement('style');
 s.textContent = '.fade-hidden{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}.fade-hidden.visible{opacity:1;transform:translateY(0)}';
 document.head.appendChild(s);
