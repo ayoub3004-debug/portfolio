@@ -6,6 +6,13 @@
   <meta name="description" content="Ayoub NADER — Développeur Web Fullstack junior disponible en alternance dès septembre 2026. Maîtrise HTML, CSS, JavaScript, PHP, Python, SQL. Basé à Ingré (Orléans)." />
   <meta name="keywords" content="développeur web, fullstack, alternance, JavaScript, PHP, Python, Orléans" />
   <meta name="author" content="Ayoub NADER" />
+  <meta property="og:title" content="Ayoub NADER — Développeur Web Fullstack" />
+  <meta property="og:description" content="Développeur Web Fullstack junior disponible en alternance dès septembre 2026. Basé à Orléans." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ayoub NADER — Développeur Web Fullstack" />
+  <meta name="twitter:description" content="Développeur Web Fullstack junior disponible en alternance dès septembre 2026." />
   <title>Ayoub NADER — Développeur Web Fullstack</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNiIgZmlsbD0iIzBhMGEwYSIvPjx0ZXh0IHg9IjE2IiB5PSIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIj5BTjwvdGV4dD48L3N2Zz4=" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -145,6 +152,7 @@
       <li><a href="#about">À propos</a></li>
       <li><a href="#skills">Compétences</a></li>
       <li><a href="#projects">Projets</a></li>
+      <li><a href="#parcours">Parcours</a></li>
       <li><a href="#recherche">Alternance</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -162,8 +170,7 @@
           <em>Ayoub NADER</em>
         </h1>
         <p class="hero-subtitle">
-          Développeur Web Fullstack junior — passionné par la création
-          d&apos;interfaces modernes et d&apos;applications web performantes.
+          <span id="typing-text"></span><span class="typing-cursor">|</span>
         </p>
         <div class="hero-actions">
           <a href="#projects" class="btn btn-primary">Voir mes projets</a>
@@ -355,6 +362,45 @@
   </section>
 
   
+
+  <section class="section" id="parcours">
+    <div class="container">
+      <span class="section-label">04 — Parcours</span>
+      <h2 class="section-title">Mon chemin</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2025 — 2026</span>
+            <h3>Formation Développeur Web</h3>
+            <p>Coda · Orléans</p>
+            <span class="timeline-tag">En cours</span>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2023 — 2025</span>
+            <h3>Licence Économie et Gestion</h3>
+            <p>Université d&apos;Orléans La Source</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-date">2022 — 2023</span>
+            <h3>Baccalauréat STMG</h3>
+            <p>Lycée Frédéric Ozanam · Cesson-Sévigné</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section recherche-section" id="recherche">
     <div class="container">
       <span class="section-label" style="opacity:0.7;">05 — Ce que je recherche</span>
@@ -435,13 +481,14 @@
     </div>
   </section>
 
+  <button id="back-to-top" aria-label="Retour en haut">↑</button>
   <footer class="footer">
     <p>Fait par Ayoub NADER — <span id="year"></span></p>
   </footer>
 
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="main.js"></script>
   <script>
-    // ── Progress bar ──
+    // Progress bar
     const bar = document.getElementById('progress-bar');
     window.addEventListener('scroll', () => {
       const doc = document.documentElement;
@@ -449,10 +496,115 @@
       bar.style.width = (scrolled * 100) + '%';
     });
 
-    // ── Scroll reveal ──
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
-          obs
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Typing animation
+    const phrases = [
+      'Développeur Web Fullstack junior.',
+      'Passionné par le code.',
+      'Disponible en alternance dès sept. 2026.'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    const typingEl = document.getElementById('typing-text');
+
+    function type() {
+      const current = phrases[phraseIndex];
+      if (!deleting) {
+        typingEl.textContent = current.slice(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(type, 1800);
+          return;
+        }
+      } else {
+        typingEl.textContent = current.slice(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+      }
+      setTimeout(type, deleting ? 40 : 70);
+    }
+    type();
+
+    // Animated counters
+    function animateCounter(el, target, suffix) {
+      let current = 0;
+      const duration = 1500;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          el.textContent = target + suffix;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current) + suffix;
+        }
+      }, 16);
+    }
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const cards = document.querySelectorAll('.stat-number');
+          animateCounter(cards[0], 3, '+');
+          cards[1].textContent = '1 an';
+          cards[2].textContent = '∞';
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    const statsSection = document.querySelector('.about-stats');
+    if (statsSection) statsObserver.observe(statsSection);
+
+    // Back to top button
+    const backBtn = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    backBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Email copy
+    const emailLink = document.getElementById('email-copy');
+    const toast = document.getElementById('copy-toast');
+    if (emailLink) {
+      emailLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.clipboard.writeText('ayoub.nader3004@gmail.com').then(() => {
+          toast.classList.add('visible');
+          setTimeout(() => toast.classList.remove('visible'), 2000);
+        });
+      });
+    }
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    document.getElementById('navToggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+</body>
