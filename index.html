@@ -496,21 +496,6 @@
       bar.style.width = (scrolled * 100) + '%';
     });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          revealObserver.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    reveals.forEach(el => revealObserver.observe(el));
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
     // Typing animation
     const phrases = [
       'Développeur Web Fullstack junior.',
@@ -521,7 +506,6 @@
     let charIndex = 0;
     let deleting = false;
     const typingEl = document.getElementById('typing-text');
-
     function type() {
       const current = phrases[phraseIndex];
       if (!deleting) {
@@ -547,8 +531,7 @@
     // Animated counters
     function animateCounter(el, target, suffix) {
       let current = 0;
-      const duration = 1500;
-      const step = target / (duration / 16);
+      const step = target / (1500 / 16);
       const timer = setInterval(() => {
         current += step;
         if (current >= target) {
@@ -559,7 +542,6 @@
         }
       }, 16);
     }
-
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -574,7 +556,7 @@
     const statsSection = document.querySelector('.about-stats');
     if (statsSection) statsObserver.observe(statsSection);
 
-    // Back to top button
+    // Back to top
     const backBtn = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
       backBtn.classList.toggle('visible', window.scrollY > 400);
@@ -595,16 +577,5 @@
         });
       });
     }
-
-    // Navbar scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
-
-    // Mobile menu
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.toggle('open');
-    });
   </script>
 </body>
