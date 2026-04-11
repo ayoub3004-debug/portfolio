@@ -1,42 +1,45 @@
-/* ═══════════════════════════════════════════════════════
-   VARIABLES CSS — Toutes les couleurs et valeurs en un seul endroit
-   💡 Change les couleurs ici pour re-themer tout le site !
-═══════════════════════════════════════════════════════ */
 :root {
   --color-bg: #0d0d0d;
   --color-bg-alt: #141414;
   --color-surface: #1a1a1a;
   --color-border: #2a2a2a;
 
-  --color-accent: #c8f04a;       /* Vert-jaune : couleur principale */
-  --color-accent-dim: #a8cc30;   /* Variante sombre pour les hovers */
+  --color-accent: #c8f04a;
+  --color-accent-dim: #a8cc30;
 
-  --color-text: #f0ede6;         /* Blanc cassé pour le texte principal */
-  --color-text-muted: #888;      /* Gris pour les textes secondaires */
+  --color-text: #f0ede6;
+  --color-text-muted: #888;
 
-  --font-display: 'DM Serif Display', serif;   /* Police des titres */
-  --font-body: 'DM Sans', sans-serif;          /* Police du corps de texte */
+  --font-display: 'DM Serif Display', serif;
+  --font-body: 'DM Sans', sans-serif;
 
   --radius: 12px;
   --radius-sm: 6px;
   --transition: 0.25s ease;
 
-  /* Espacements cohérents sur tout le site */
   --section-padding: 100px 0;
   --container-width: 1100px;
 }
 
-/* ═══════════════════════════════════════════════════════
-   RESET — Supprime les styles par défaut des navigateurs
-═══════════════════════════════════════════════════════ */
+body.light {
+  --color-bg: #f5f5f5;
+  --color-bg-alt: #ebebeb;
+  --color-surface: #ffffff;
+  --color-border: #d0d0d0;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-accent: #5b8a00;
+  --color-accent-dim: #4a7000;
+}
+
 *, *::before, *::after {
-  box-sizing: border-box;  /* Inclut padding et border dans la largeur */
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  scroll-behavior: smooth; /* Défilement fluide pour les liens ancre (#) */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -45,37 +48,27 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.7;
-  overflow-x: hidden; /* Empêche le scroll horizontal */
+  overflow-x: hidden;
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   UTILITAIRES — Classes réutilisables partout
-═══════════════════════════════════════════════════════ */
-
-/* Le container centre le contenu et le limite en largeur */
 .container {
   max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 24px;
 }
 
-/* Version étroite pour les formulaires */
 .container-narrow {
   max-width: 680px;
 }
 
-/* Sections génériques */
 .section {
   padding: var(--section-padding);
 }
 
-/* Fond légèrement différent pour alterner les sections */
 .section-alt {
   background-color: var(--color-bg-alt);
 }
 
-/* Petite étiquette au-dessus des titres de section */
 .section-label {
   display: inline-block;
   font-size: 12px;
@@ -86,18 +79,14 @@ body {
   margin-bottom: 16px;
 }
 
-/* Titre de section */
 .section-title {
   font-family: var(--font-display);
-  font-size: clamp(32px, 5vw, 52px); /* S'adapte à la largeur de l'écran */
+  font-size: clamp(32px, 5vw, 52px);
   line-height: 1.1;
   margin-bottom: 48px;
+  color: var(--color-text);
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   BOUTONS
-═══════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -113,17 +102,15 @@ body {
   transition: all var(--transition);
 }
 
-/* Bouton principal : fond vert-jaune */
 .btn-primary {
   background-color: var(--color-accent);
   color: #0d0d0d;
 }
 .btn-primary:hover {
   background-color: var(--color-accent-dim);
-  transform: translateY(-2px); /* Légère élévation au survol */
+  transform: translateY(-2px);
 }
 
-/* Bouton secondaire : bordure */
 .btn-secondary {
   background-color: transparent;
   border-color: var(--color-border);
@@ -134,7 +121,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* Bouton outline (CV) */
 .btn-outline {
   background-color: transparent;
   border-color: var(--color-accent);
@@ -145,7 +131,6 @@ body {
   color: #0d0d0d;
 }
 
-/* Petit bouton pour les cartes projets */
 .btn-sm {
   padding: 8px 16px;
   font-size: 13px;
@@ -159,7 +144,6 @@ body {
   color: var(--color-accent);
 }
 
-/* Variante fantôme (texte seul) */
 .btn-ghost {
   background: transparent;
   border-color: transparent;
@@ -170,15 +154,10 @@ body {
   background: transparent;
 }
 
-/* Bouton pleine largeur pour le formulaire */
 .btn-full { width: 100%; justify-content: center; }
 
-
-/* ═══════════════════════════════════════════════════════
-   NAVIGATION
-═══════════════════════════════════════════════════════ */
 .nav {
-  position: fixed; /* Reste en haut même quand on scroll */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -187,19 +166,20 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
-  /* backdrop-filter crée un effet verre dépoli */
   backdrop-filter: blur(12px);
   background-color: rgba(13, 13, 13, 0.85);
   border-bottom: 1px solid var(--color-border);
-  transition: padding var(--transition);
+  transition: padding var(--transition), background-color var(--transition);
 }
 
-/* Quand on scroll, la nav rétrécit un peu (géré par JS) */
+body.light .nav {
+  background-color: rgba(245, 245, 245, 0.92);
+}
+
 .nav.scrolled {
   padding: 12px 40px;
 }
 
-/* Logo / initiales */
 .nav-logo {
   font-family: var(--font-display);
   font-size: 22px;
@@ -207,10 +187,9 @@ body {
   color: var(--color-text);
 }
 .nav-logo span {
-  color: var(--color-accent); /* Le point en couleur accent */
+  color: var(--color-accent);
 }
 
-/* Liste des liens de navigation */
 .nav-links {
   display: flex;
   gap: 32px;
@@ -227,9 +206,8 @@ body {
   color: var(--color-accent);
 }
 
-/* Bouton hamburger (visible seulement sur mobile) */
 .nav-toggle {
-  display: none; /* Caché sur desktop */
+  display: none;
   flex-direction: column;
   gap: 5px;
   background: none;
@@ -246,17 +224,14 @@ body {
   transition: all var(--transition);
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   HERO — Section d'accueil
-═══════════════════════════════════════════════════════ */
 .hero {
-  min-height: 100vh; /* Prend toute la hauteur de l'écran */
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 120px 40px 60px;
   position: relative;
   overflow: hidden;
+  background-color: var(--color-bg);
 }
 
 .hero-content {
@@ -264,13 +239,10 @@ body {
   margin: 0 auto;
   width: 100%;
   position: relative;
-  z-index: 1; /* Au-dessus des décorations */
-
-  /* Animation d'entrée : fade + montée depuis le bas */
+  z-index: 1;
   animation: fadeUp 0.8s ease both;
 }
 
-/* Badge "disponible" en haut du hero */
 .hero-tag {
   display: inline-flex;
   align-items: center;
@@ -282,7 +254,10 @@ body {
   border: 1px solid rgba(200, 240, 74, 0.3);
   border-radius: 100px;
 }
-/* Le petit point vert qui pulse */
+body.light .hero-tag {
+  border-color: rgba(91, 138, 0, 0.3);
+}
+
 .hero-tag::before {
   content: '';
   display: block;
@@ -290,7 +265,7 @@ body {
   height: 7px;
   background: var(--color-accent);
   border-radius: 50%;
-  animation: pulse 2s infinite; /* Animation infinie définie plus bas */
+  animation: pulse 2s infinite;
 }
 
 .hero-title {
@@ -298,9 +273,9 @@ body {
   font-size: clamp(48px, 8vw, 96px);
   line-height: 1.0;
   margin-bottom: 24px;
+  color: var(--color-text);
 }
 
-/* Le prénom en italique avec la police serif */
 .hero-title em {
   font-style: italic;
   color: var(--color-accent);
@@ -317,17 +292,15 @@ body {
 .hero-actions {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap; /* Sur mobile, les boutons passent à la ligne */
+  flex-wrap: wrap;
 }
 
-/* ——— Décorations du hero (cercles en arrière-plan) ——— */
 .hero-deco {
   position: absolute;
-  inset: 0; /* Couvre tout le hero */
-  pointer-events: none; /* On peut cliquer à travers */
+  inset: 0;
+  pointer-events: none;
 }
 
-/* Chaque cercle est positionné de façon absolue */
 .deco-circle {
   position: absolute;
   border-radius: 50%;
@@ -337,13 +310,9 @@ body {
 .c2 { width: 400px; height: 400px; right: 100px; top: 100px; border-color: rgba(200, 240, 74, 0.05); }
 .c3 { width: 200px; height: 200px; right: 250px; top: 250px; border-color: rgba(200, 240, 74, 0.12); background: rgba(200, 240, 74, 0.03); }
 
-
-/* ═══════════════════════════════════════════════════════
-   SECTION À PROPOS
-═══════════════════════════════════════════════════════ */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes égales */
+  grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
 }
@@ -353,7 +322,6 @@ body {
   margin-bottom: 20px;
 }
 
-/* Grille des stats (3 cartes côte à côte) */
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -388,10 +356,6 @@ body {
   color: var(--color-text-muted);
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   SECTION COMPÉTENCES
-═══════════════════════════════════════════════════════ */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -431,7 +395,6 @@ body {
   color: var(--color-text);
 }
 
-/* Barre de compétence : la largeur est définie via --w dans le HTML */
 .skill-bar {
   height: 4px;
   background: var(--color-border);
@@ -441,18 +404,13 @@ body {
 
 .skill-bar-fill {
   height: 100%;
-  width: var(--w); /* Récupère la valeur de --w définie inline dans le HTML */
+  width: var(--w);
   background: linear-gradient(90deg, var(--color-accent), var(--color-accent-dim));
   border-radius: 4px;
-  /* Animation : la barre se remplit progressivement au chargement */
   animation: fillBar 1.2s ease both;
   animation-delay: 0.3s;
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   SECTION PROJETS
-═══════════════════════════════════════════════════════ */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -463,7 +421,7 @@ body {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  overflow: hidden; /* Clip l'image dans les coins arrondis */
+  overflow: hidden;
   transition: transform var(--transition), border-color var(--transition);
 }
 .project-card:hover {
@@ -471,7 +429,6 @@ body {
   border-color: rgba(200, 240, 74, 0.3);
 }
 
-/* Zone image du projet */
 .project-img {
   height: 180px;
   display: flex;
@@ -480,7 +437,6 @@ body {
   position: relative;
 }
 
-/* Couleurs différentes pour chaque projet */
 .project-img-1 { background: linear-gradient(135deg, #1a2a1a, #2a4a2a); }
 .project-img-2 { background: linear-gradient(135deg, #1a1a2a, #2a2a4a); }
 .project-img-3 { background: linear-gradient(135deg, #2a1a1a, #4a2a2a); }
@@ -492,16 +448,11 @@ body {
   letter-spacing: 0.15em;
   color: rgba(255,255,255,0.2);
 }
-/* 💡 Pour mettre une vraie image :
-   <img src="assets/screenshot-meteo.png" alt="App météo" class="project-screenshot" />
-   Ajoute en CSS : .project-screenshot { width: 100%; height: 100%; object-fit: cover; }
-*/
 
 .project-info {
   padding: 20px;
 }
 
-/* Tags technos sur chaque projet */
 .project-tags {
   display: flex;
   flex-wrap: wrap;
@@ -516,10 +467,15 @@ body {
   border-radius: 4px;
   border: 1px solid rgba(200, 240, 74, 0.2);
 }
+body.light .tag {
+  background: rgba(91, 138, 0, 0.1);
+  border-color: rgba(91, 138, 0, 0.3);
+}
 
 .project-info h3 {
   font-size: 18px;
   margin-bottom: 8px;
+  color: var(--color-text);
 }
 
 .project-info p {
@@ -534,10 +490,6 @@ body {
   gap: 10px;
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   SECTION CONTACT
-═══════════════════════════════════════════════════════ */
 .contact-intro {
   font-size: 18px;
   color: var(--color-text-muted);
@@ -551,7 +503,6 @@ body {
   gap: 20px;
 }
 
-/* Deux champs côte à côte */
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -570,7 +521,6 @@ body {
   color: var(--color-text-muted);
 }
 
-/* Style des champs de formulaire */
 .form-group input,
 .form-group textarea {
   background: var(--color-surface);
@@ -581,26 +531,23 @@ body {
   font-size: 15px;
   color: var(--color-text);
   transition: border-color var(--transition);
-  resize: vertical; /* Pour le textarea : redimensionnable verticalement */
+  resize: vertical;
   outline: none;
 }
-/* Quand le champ est focalisé (cliqué) */
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px rgba(200, 240, 74, 0.1);
 }
 
-/* Message d'erreur de validation (affiché par JS) */
 .error-msg {
   font-size: 12px;
   color: #ff6b6b;
-  min-height: 16px; /* Réserve l'espace même quand vide */
+  min-height: 16px;
 }
 
-/* Message de succès (caché par défaut) */
 .form-success {
-  display: none; /* JS change ça en flex */
+  display: none;
   padding: 16px;
   background: rgba(200, 240, 74, 0.1);
   border: 1px solid rgba(200, 240, 74, 0.3);
@@ -610,7 +557,6 @@ body {
   font-size: 14px;
 }
 
-/* Liens réseaux sociaux sous le formulaire */
 .social-links {
   display: flex;
   gap: 24px;
@@ -630,55 +576,30 @@ body {
   color: var(--color-accent);
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════════════════ */
 .footer {
   text-align: center;
   padding: 32px;
   font-size: 13px;
   color: var(--color-text-muted);
   border-top: 1px solid var(--color-border);
+  background-color: var(--color-bg);
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   ANIMATIONS KEYFRAMES
-   (définition des animations utilisées plus haut)
-═══════════════════════════════════════════════════════ */
-
-/* Apparition depuis le bas avec fade */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Pulsation du point vert dans le badge hero */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50%       { transform: scale(1.5); opacity: 0.6; }
 }
 
-/* Remplissage des barres de compétences */
 @keyframes fillBar {
   from { width: 0; }
   to   { width: var(--w); }
 }
 
-
-/* ═══════════════════════════════════════════════════════
-   RESPONSIVE — Adaptations pour tablette et mobile
-   💡 "max-width" = styles appliqués EN DESSOUS de cette largeur
-═══════════════════════════════════════════════════════ */
-
-/* ——— Tablette (≤ 900px) ——— */
 @media (max-width: 900px) {
   .about-grid       { grid-template-columns: 1fr; }
   .about-stats      { grid-template-columns: repeat(3, 1fr); }
@@ -686,13 +607,10 @@ body {
   .projects-grid    { grid-template-columns: 1fr 1fr; }
 }
 
-/* ——— Mobile (≤ 600px) ——— */
 @media (max-width: 600px) {
-  /* Navigation : affiche le hamburger, cache les liens */
   .nav-links    { display: none; }
   .nav-toggle   { display: flex; }
 
-  /* Quand le menu est ouvert (classe ajoutée par JS) */
   .nav-links.open {
     display: flex;
     flex-direction: column;
