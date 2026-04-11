@@ -21,17 +21,6 @@
   --container-width: 1100px;
 }
 
-body.light {
-  --color-bg: #f5f5f5;
-  --color-bg-alt: #ebebeb;
-  --color-surface: #ffffff;
-  --color-border: #d0d0d0;
-  --color-text: #111111;
-  --color-text-muted: #555555;
-  --color-accent: #5b8a00;
-  --color-accent-dim: #4a7000;
-}
-
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -172,10 +161,6 @@ body {
   transition: padding var(--transition), background-color var(--transition);
 }
 
-body.light .nav {
-  background-color: rgba(245, 245, 245, 0.92);
-}
-
 .nav.scrolled {
   padding: 12px 40px;
 }
@@ -253,9 +238,6 @@ body.light .nav {
   padding: 6px 14px;
   border: 1px solid rgba(200, 240, 74, 0.3);
   border-radius: 100px;
-}
-body.light .hero-tag {
-  border-color: rgba(91, 138, 0, 0.3);
 }
 
 .hero-tag::before {
@@ -466,10 +448,6 @@ body.light .hero-tag {
   color: var(--color-accent);
   border-radius: 4px;
   border: 1px solid rgba(200, 240, 74, 0.2);
-}
-body.light .tag {
-  background: rgba(91, 138, 0, 0.1);
-  border-color: rgba(91, 138, 0, 0.3);
 }
 
 .project-info h3 {
