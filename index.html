@@ -542,19 +542,21 @@
         }
       }, 16);
     }
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const cards = document.querySelectorAll('.stat-number');
-          animateCounter(cards[0], 3, '+');
-          cards[1].textContent = '1 an';
-          cards[2].textContent = '∞';
-          statsObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.5 });
-    const statsSection = document.querySelector('.about-stats');
-    if (statsSection) statsObserver.observe(statsSection);
+    const firstStatCard = document.querySelector('.stat-card');
+    if (firstStatCard) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const cards = document.querySelectorAll('.stat-number');
+            if (cards[0]) animateCounter(cards[0], 3, '+');
+            if (cards[1]) cards[1].textContent = '1 an';
+            if (cards[2]) cards[2].textContent = '∞';
+            statsObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      statsObserver.observe(firstStatCard);
+    }
 
     // Back to top
     const backBtn = document.getElementById('back-to-top');
