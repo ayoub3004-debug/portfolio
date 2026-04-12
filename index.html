@@ -144,6 +144,8 @@
 </head>
 <body>
 
+  <div id="page-loader"><div class="loader-inner"></div></div>
+  <div id="custom-cursor"></div>
   <div id="progress-bar"></div>
 
   <nav class="nav" id="navbar">
@@ -154,8 +156,10 @@
       <li><a href="#projects">Projets</a></li>
       <li><a href="#parcours">Parcours</a></li>
       <li><a href="#recherche">Alternance</a></li>
+      <li><a href="#softskills">Profil</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Changer le thème" title="Mode clair/sombre">☀️</button>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -452,15 +456,93 @@
         <div class="recherche-card">
           <div class="recherche-icon">🎯</div>
           <div class="recherche-label">Type de mission</div>
-          <div class="recherche-value">Développement<br/>Fullstack junior</div>
+          <div class="recherche-value">Développement web<br/>Fullstack junior</div>
         </div>
       </div>
     </div>
   </section>
 
+
+  <section class="section" id="softskills">
+    <div class="container">
+      <span class="section-label">06 — Profil</span>
+      <h2 class="section-title">Soft skills & Langues</h2>
+      <div class="profile-grid">
+        <div class="softskills-block">
+          <h3 class="profile-subtitle">Qualités</h3>
+          <div class="softskills-list">
+            <div class="softskill-card">
+              <span class="softskill-icon">🧠</span>
+              <span class="softskill-label">Esprit logique</span>
+            </div>
+            <div class="softskill-card">
+              <span class="softskill-icon">⚡</span>
+              <span class="softskill-label">Apprentissage rapide</span>
+            </div>
+            <div class="softskill-card">
+              <span class="softskill-icon">🎯</span>
+              <span class="softskill-label">Autonomie</span>
+            </div>
+            <div class="softskill-card">
+              <span class="softskill-icon">🤝</span>
+              <span class="softskill-label">Travail en équipe</span>
+            </div>
+            <div class="softskill-card">
+              <span class="softskill-icon">🔥</span>
+              <span class="softskill-label">Motivé</span>
+            </div>
+            <div class="softskill-card">
+              <span class="softskill-icon">💡</span>
+              <span class="softskill-label">Créativité</span>
+            </div>
+          </div>
+        </div>
+        <div class="langues-block">
+          <h3 class="profile-subtitle">Langues</h3>
+          <div class="langue-list">
+            <div class="langue-item">
+              <div class="langue-header">
+                <span class="langue-flag">🇫🇷</span>
+                <span class="langue-name">Français</span>
+                <span class="langue-level maitrise">Courant</span>
+              </div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="--w: 100%"></div></div>
+            </div>
+            <div class="langue-item">
+              <div class="langue-header">
+                <span class="langue-flag">🇬🇧</span>
+                <span class="langue-name">Anglais</span>
+                <span class="langue-level moyen">Intermédiaire</span>
+              </div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="--w: 55%"></div></div>
+            </div>
+            <div class="langue-item">
+              <div class="langue-header">
+                <span class="langue-flag">🇲🇦</span>
+                <span class="langue-name">Arabe</span>
+                <span class="langue-level maitrise">Courant</span>
+              </div>
+              <div class="skill-bar"><div class="skill-bar-fill" style="--w: 95%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="disponibilite-banner">
+    <div class="container">
+      <div class="dispo-inner">
+        <div class="dispo-dot"></div>
+        <span class="dispo-text">Disponible en alternance dès septembre 2026 · 3 semaines entreprise / 1 semaine école · Orléans & alentours</span>
+        <a href="#contact" class="btn btn-primary dispo-btn">Me contacter</a>
+      </div>
+    </div>
+  </div>
+
   <section class="section section-alt" id="contact">
     <div class="container container-narrow">
-      <span class="section-label">06 — Contact</span>
+      <span class="section-label">07 — Contact</span>
       <h2 class="section-title">Travaillons ensemble</h2>
       <p class="contact-intro">
         Je suis ouvert aux opportunités d&apos;alternance dès septembre 2026.
@@ -601,6 +683,62 @@
           toast.classList.add('visible');
           setTimeout(() => toast.classList.remove('visible'), 2000);
         });
+      });
+    }
+
+    // Page loader
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      if (loader) {
+        loader.classList.add('loaded');
+        setTimeout(() => loader.remove(), 600);
+      }
+    });
+
+    // Custom cursor
+    const cursor = document.getElementById('custom-cursor');
+    if (cursor) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+      document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
+      document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+      });
+    }
+
+    // Parallax hero photo
+    const heroPhoto = document.querySelector('.hero-photo img');
+    if (heroPhoto) {
+      document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 12;
+        const y = (e.clientY / window.innerHeight - 0.5) * 12;
+        heroPhoto.style.transform = `translate(${x}px, ${y}px)`;
+      });
+    }
+
+    // Theme toggle (light/dark)
+    const themeBtn = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      if (themeBtn) themeBtn.textContent = '🌙';
+    }
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        if (current === 'light') {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'dark');
+          themeBtn.textContent = '☀️';
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+          themeBtn.textContent = '🌙';
+        }
       });
     }
   </script>
